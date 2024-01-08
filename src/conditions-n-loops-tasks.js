@@ -90,10 +90,16 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (a === 0 || b === 0 || c === 0) {
+    return false;
+  }
+  const one = a === b && a + b > c;
+  const two = b === c && b + c > a;
+  const three = a === c && a + c > b;
+  const res = one || two || three;
+  return res;
 }
-
 /**
  * Converts a number to Roman numerals. The number will be between 1 and 39.
  * In this task, the use of methods of the String and Array classes is not allowed.
@@ -108,9 +114,25 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const romanNumerals = [
+    { value: 10, numeral: 'X' },
+    { value: 9, numeral: 'IX' },
+    { value: 5, numeral: 'V' },
+    { value: 4, numeral: 'IV' },
+    { value: 1, numeral: 'I' },
+  ];
+  let res = num;
+  let romanNumeral = '';
+  for (let i = 0; i < romanNumerals.length; i += 1) {
+    while (res >= romanNumerals[i].value) {
+      romanNumeral += romanNumerals[i].numeral;
+      res -= romanNumerals[i].value;
+    }
+  }
+  return romanNumeral;
 }
+// console.log(convertToRomanNumerals(3));
 
 /**
  * Converts a number to a string, replacing digits with words.
