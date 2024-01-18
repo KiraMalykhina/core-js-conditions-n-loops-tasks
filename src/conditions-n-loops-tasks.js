@@ -152,7 +152,6 @@ function convertToRomanNumerals(num) {
 function convertNumberToString(/* numberStr */) {
   throw new Error('Not implemented');
 }
-
 /**
  * Determines whether a string is a palindrome.
  * In this task, the use of methods of the String and Array classes is not allowed.
@@ -165,10 +164,15 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const res = Math.floor(str.length / 2);
+  for (let i = 0; i < res; i += 1)
+    if (str[i] !== str[str.length - i - 1]) {
+      return false;
+    }
+  return true;
 }
-
+// console.log(isPalindrome(' qweewq '));
 /**
  * Finds the first occurrence of a letter in a string.
  * In this task, the use of methods of the String and Array classes is not allowed.
@@ -202,10 +206,17 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  let number = num;
+  while (number > 0) {
+    if (number % 10 === digit) {
+      return true;
+    }
+    number = Math.trunc(number / 10);
+  }
+  return false;
 }
-
+// console.log(isContainNumber(123450, 5));
 /**
  * Finds the index of an element in an array where the sum of elements to the left equals the sum of elements to the right.
  * If such an index does not return -1.
@@ -219,10 +230,26 @@ function isContainNumber(/* num, digit */) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  if (arr.length === 1) {
+    return arr[0];
+  }
+  for (let i = 1; i < arr.length; i += 1) {
+    let left = 0;
+    for (let k = i - 1; k >= 0; k -= 1) {
+      left += arr[k];
+    }
+    let right = 0;
+    for (let l = i + 1; l < arr.length; l += 1) {
+      right += arr[l];
+    }
+    if (left === right) {
+      return i;
+    }
+  }
+  return -1;
 }
-
+// console.log(getBalanceIndex( [1, 2, 5, 3, 0]));
 /**
  * Generates a spiral matrix of a given size, filled with numbers in ascending order starting from one.
  * The direction of filling with numbers is clockwise.
