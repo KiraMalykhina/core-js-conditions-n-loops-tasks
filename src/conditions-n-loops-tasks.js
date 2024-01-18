@@ -314,7 +314,7 @@ function getSpiralMatrix(size) {
   }
   return results;
 }
-console.log(getSpiralMatrix(4));
+// console.log(getSpiralMatrix(4));
 /**
  * Rotates a matrix by 90 degrees clockwise in place.
  * Take into account that the matrix size can be very large. Consider how you can optimize your solution.
