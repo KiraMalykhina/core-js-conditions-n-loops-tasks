@@ -280,39 +280,8 @@ function getBalanceIndex(arr) {
  *          [10, 9,  8,  7]
  *        ]
  */
-function getSpiralMatrix(size) {
-  const results = [];
-  for (let i = 0; i < size; i += 1) {
-    results.push([]);
-  }
-  let counter = 1;
-  let startColumn = 0;
-  let endColumn = size - 1;
-  let startRow = 0;
-  let endRow = size - 1;
-  while (startColumn <= endColumn && startRow <= endRow) {
-    for (let i = startColumn; i <= endColumn; i += 1) {
-      results[startRow][i] = counter;
-      counter += 1;
-    }
-    startRow += 1;
-    for (let i = startRow; i <= endRow; i += 1) {
-      results[i][endColumn] = counter;
-      counter += 1;
-    }
-    endColumn -= 1;
-    for (let i = endColumn; i >= startColumn; i -= 1) {
-      results[endRow][i] = counter;
-      counter += 1;
-    }
-    endRow -= 1;
-    for (let i = endRow; i >= startRow; i -= 1) {
-      results[i][startColumn] = counter;
-      counter += 1;
-    }
-    startColumn += 1;
-  }
-  return results;
+function getSpiralMatrix(/* size */) {
+  throw new Error('Not implemented');
 }
 // console.log(getSpiralMatrix(4));
 /**
@@ -349,19 +318,20 @@ function rotateMatrix(/* matrix */) {
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
 function sortByAsc(arr) {
-  const a = arr;
-  const n = a.length;
-  for (let i = 0; i < n - 1; i += 1) {
-    for (let j = 0; j < n - 1 - i; j += 1) {
-      if (a[j + 1] < a[j]) {
-        const t = a[j + 1];
-        a[j + 1] = a[j];
-        a[j] = t;
+  let temp;
+  const newArr = arr;
+  for (let i = 0; i < arr.length; i += 1) {
+    for (let j = i + 1; j < arr.length; j += 1) {
+      if (arr[i] > arr[j]) {
+        temp = newArr[i];
+        newArr[i] = newArr[j];
+        newArr[j] = temp;
       }
     }
   }
-  return a;
+  return newArr;
 }
+// console.log(sortByAsc([2, 9, 5]));
 /**
  * Shuffles characters in a string so that the characters with an odd index are moved to the end of the string at each iteration.
  * Take into account that the string can be very long and the number of iterations is large. Consider how you can optimize your solution.
