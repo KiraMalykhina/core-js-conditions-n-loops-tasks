@@ -204,7 +204,7 @@ function getIndexOf(str, letter) {
   }
   return -1;
 }
-console.log(getIndexOf('qwerty', 'q'));
+// console.log(getIndexOf('qwerty', 'q'));
 // getIndexOf('qwerty', 'e');
 /**
  * Checks if a number contains a specific digit.
