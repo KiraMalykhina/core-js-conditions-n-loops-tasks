@@ -336,10 +336,25 @@ function getSpiralMatrix(size) {
  *    [7, 8, 9]         [9, 6, 3]
  *  ]                 ]
  */
-function rotateMatrix(/* matrix */) {
-  throw new Error('Not implemented');
+function rotateMatrix(matrix) {
+  const len = matrix.length;
+  for (let i = 0; i < len / 2; i += 1) {
+    for (let j = i; j < len - i - 1; j += 1) {
+      const item = matrix[i][j];
+      const resolt = matrix;
+      resolt[i][j] = resolt[len - j - 1][i];
+      resolt[len - j - 1][i] = resolt[len - i - 1][len - j - 1];
+      resolt[len - i - 1][len - j - 1] = resolt[j][len - i - 1];
+      resolt[j][len - i - 1] = item;
+    }
+  }
+  return matrix;
 }
-
+// console.log(rotateMatrix([
+//   [1, 2, 3],
+//   [4, 5, 6],
+//   [7, 8, 9],
+// ]));
 /**
  * Sorts an array of numbers in ascending order in place.
  * Employ any sorting algorithm of your choice.
